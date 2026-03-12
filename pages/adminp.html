@@ -1,0 +1,2869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartProfits</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/ios-style.css">
+    <!-- SF Symbols & Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* ===== Premium Design System ===== */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        :root {
+            /* Brand Colors */
+            --ios-blue: #2563EB;
+            --ios-blue-light: #3B82F6;
+            --ios-blue-dark: #1D4ED8;
+            --ios-green: #10B981;
+            --ios-orange: #F59E0B;
+            --ios-red: #EF4444;
+            --ios-purple: #8B5CF6;
+            --ios-teal: #06B6D4;
+            --ios-pink: #EC4899;
+
+            /* Gray Scale */
+            --ios-gray-1: #6B7280;
+            --ios-gray-2: #9CA3AF;
+            --ios-gray-3: #D1D5DB;
+            --ios-gray-4: #E5E7EB;
+            --ios-gray-5: #F3F4F6;
+            --ios-gray-6: #F9FAFB;
+
+            /* System Colors */
+            --ios-label: #111827;
+            --ios-secondary-label: #374151;
+            --ios-tertiary-label: #6B7280;
+            --ios-background: #FFFFFF;
+            --ios-secondary-background: #F0F4FF;
+            --ios-tertiary-background: #FFFFFF;
+
+            /* Premium Gradients */
+            --grad-blue: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+            --grad-green: linear-gradient(135deg, #059669 0%, #10B981 100%);
+            --grad-orange: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+            --grad-purple: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+            --grad-teal: linear-gradient(135deg, #0891B2 0%, #2563EB 100%);
+            --grad-bg: linear-gradient(160deg, #EEF2FF 0%, #F0F9FF 50%, #ECFDF5 100%);
+
+            /* Typography Scale */
+            --ios-large-title: 34px;
+            --ios-title-1: 28px;
+            --ios-title-2: 22px;
+            --ios-title-3: 20px;
+            --ios-headline: 17px;
+            --ios-body: 17px;
+            --ios-callout: 16px;
+            --ios-subhead: 15px;
+            --ios-footnote: 13px;
+            --ios-caption-1: 12px;
+            --ios-caption-2: 11px;
+
+            /* Corner Radius */
+            --ios-corner-radius-small: 10px;
+            --ios-corner-radius-medium: 14px;
+            --ios-corner-radius-large: 18px;
+            --ios-corner-radius-xlarge: 22px;
+
+            /* Shadows */
+            --ios-shadow-1: 0 2px 8px rgba(37, 99, 235, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+            --ios-shadow-2: 0 8px 24px rgba(37, 99, 235, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
+            --ios-shadow-3: 0 16px 48px rgba(37, 99, 235, 0.18), 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+            background: var(--grad-bg);
+            height: 100vh;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: var(--ios-label);
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Global scrollbar hiding */
+        * {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        *::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* App Container */
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-width: 414px;
+            margin: 0 auto;
+            background: var(--grad-bg);
+            overflow: hidden;
+        }
+
+
+
+        /* Navigation Bar */
+        .nav-bar {
+            background: rgba(255, 255, 255, 0.88);
+            padding: 6px 20px 10px;
+            border-bottom: 1px solid rgba(37, 99, 235, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 2px 12px rgba(37, 99, 235, 0.07);
+        }
+
+        .nav-title {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 800;
+            gap: 8px;
+            background: var(--grad-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-subtitle {
+            font-size: var(--ios-subhead);
+            color: var(--ios-gray-1);
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .app-main {
+            flex: 1;
+            overflow-y: auto;
+            background: var(--grad-bg);
+            padding-bottom: 100px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .app-main::-webkit-scrollbar {
+            display: none;
+        }
+
+        .view {
+            display: none;
+            overflow-y: auto;
+            height: 100%;
+            /* Hide scrollbar but keep scrolling */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .view::-webkit-scrollbar {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+            animation: slideIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* iOS Cards */
+        .ios-card {
+            background: var(--ios-tertiary-background);
+            border-radius: var(--ios-corner-radius-medium);
+            box-shadow: var(--ios-shadow-1);
+            margin-bottom: 16px;
+        }
+
+        /* Stats Overview */
+        .stats-overview {
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 18px;
+            padding: 16px 14px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.10), 0 1px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--grad-blue);
+            border-radius: 18px 18px 0 0;
+        }
+
+        .stat-card:nth-child(2)::before {
+            background: var(--grad-green);
+        }
+
+        .stat-card:nth-child(3)::before {
+            background: var(--grad-purple);
+        }
+
+        .stat-card:nth-child(4)::before {
+            background: var(--grad-orange);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.15), 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-card:active {
+            transform: scale(0.96);
+        }
+
+        .stat-card .icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .value {
+            font-size: var(--ios-title-3);
+            font-weight: 800;
+            background: var(--grad-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .stat-card .label {
+            font-size: var(--ios-caption-1);
+            color: var(--ios-gray-1);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        /* Top 3 ranking list inside stat card */
+        .stat-card .top3-list {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            text-align: left;
+        }
+
+        .stat-card .top3-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 10px;
+            line-height: 1.3;
+            background: rgba(37, 99, 235, 0.04);
+            border-radius: 6px;
+            padding: 2px 4px;
+        }
+
+        .stat-card .top3-rank {
+            font-size: 9px;
+            font-weight: 800;
+            min-width: 14px;
+            text-align: center;
+            border-radius: 50%;
+            width: 17px;
+            height: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .stat-card .top3-rank.r1 {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #7a3c00;
+            box-shadow: 0 2px 6px rgba(255, 165, 0, 0.4);
+        }
+
+        .stat-card .top3-rank.r2 {
+            background: linear-gradient(135deg, #D1D5DB, #9CA3AF);
+            color: #374151;
+        }
+
+        .stat-card .top3-rank.r3 {
+            background: linear-gradient(135deg, #CD7F32, #A0522D);
+            color: #fff;
+        }
+
+        .stat-card .top3-name {
+            flex: 1;
+            color: var(--ios-label);
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .stat-card .top3-val {
+            font-weight: 700;
+            color: var(--ios-blue);
+            white-space: nowrap;
+            font-size: 10px;
+        }
+
+        .stat-card .top3-empty {
+            font-size: 10px;
+            color: var(--ios-gray-2);
+            text-align: center;
+            padding: 6px 0;
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: var(--ios-title-3);
+            font-weight: 800;
+            color: var(--ios-label);
+            letter-spacing: -0.5px;
+        }
+
+        .section-action {
+            font-size: var(--ios-callout);
+            color: var(--ios-blue);
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            padding: 4px 10px;
+            background: rgba(37, 99, 235, 0.08);
+            border-radius: 20px;
+        }
+
+        .section-action:active {
+            opacity: 0.6;
+        }
+
+        /* Store Cards */
+        .stores-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .store-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.10), 0 1px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+        }
+
+        .store-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(37, 99, 235, 0.18), 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .store-card:active {
+            transform: scale(0.95);
+        }
+
+        .store-image {
+            width: 100%;
+            height: 105px;
+            background: var(--grad-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .store-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.25), transparent);
+        }
+
+        .store-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .store-info {
+            text-align: center;
+            padding: 4px 8px 8px;
+        }
+
+        .store-info h3 {
+            font-size: var(--ios-headline);
+            font-weight: 700;
+            color: var(--ios-label);
+            margin: 0 0 2px 0;
+            letter-spacing: -0.2px;
+        }
+
+        .store-sales {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0px;
+        }
+
+        .sales-amount {
+            font-size: 16px;
+            font-weight: 800;
+            background: var(--grad-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .sales-label {
+            font-size: var(--ios-caption-2);
+            color: var(--ios-gray-2);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        /* Date Selector */
+        .date-selector-section {
+            margin-bottom: 16px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .date-picker {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 14px;
+            padding: 14px 16px;
+            border: 1px solid rgba(37, 99, 235, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s;
+            flex: 1;
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.06);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .date-picker:focus-within {
+            border-color: var(--ios-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .date-picker label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: var(--ios-subhead);
+            font-weight: 600;
+            color: var(--ios-label);
+            cursor: pointer;
+        }
+
+        .date-picker label i {
+            color: var(--ios-blue);
+            font-size: 20px;
+        }
+
+        .date-picker input[type="date"] {
+            background: transparent;
+            border: none;
+            color: var(--ios-blue);
+            font-size: var(--ios-subhead);
+            font-weight: 700;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .date-picker input[type="date"]:focus {
+            outline: none;
+            background: rgba(37, 99, 235, 0.08);
+        }
+
+        .date-picker input[type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        /* Fixed Stock Dashboard - Compact Version */
+        .stock-dashboard {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 414px;
+            background: var(--ios-background);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 0.5px solid var(--ios-gray-4);
+            z-index: 100;
+            padding: 0 16px;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .dashboard-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+        }
+
+        .dashboard-row:first-child {
+            padding-top: 12px;
+        }
+
+        .dashboard-row:last-child {
+            padding-bottom: 10px;
+        }
+
+        .dashboard-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .dashboard-label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            color: var(--ios-gray-1);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .dashboard-label i {
+            font-size: 12px;
+            color: var(--ios-blue);
+        }
+
+        .dashboard-select {
+            background: var(--ios-secondary-background);
+            border: 0.5px solid var(--ios-gray-5);
+            border-radius: 6px;
+            padding: 6px 8px;
+            font-size: 13px;
+            color: var(--ios-blue);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .dashboard-select:focus {
+            outline: none;
+            border-color: var(--ios-blue);
+            box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1);
+        }
+
+        .search-container {
+            flex: 1;
+        }
+
+        .search-bar {
+            background: var(--ios-tertiary-background);
+            border-radius: 6px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 0.5px solid var(--ios-gray-5);
+            transition: all 0.2s;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--ios-blue);
+            box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1);
+        }
+
+        .search-bar i {
+            color: var(--ios-gray-1);
+            font-size: 14px;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 14px;
+            background: transparent;
+            color: var(--ios-label);
+        }
+
+        .search-bar input::placeholder {
+            color: var(--ios-gray-1);
+        }
+
+        /* Filter Segmented Control - Compact */
+        .filter-control {
+            background: var(--ios-gray-6);
+            border-radius: 6px;
+            padding: 1px;
+            display: flex;
+        }
+
+        .filter-tab {
+            flex: 1;
+            padding: 5px 8px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            color: var(--ios-label);
+        }
+
+        .filter-tab.active {
+            background: var(--ios-tertiary-background);
+            color: var(--ios-label);
+            box-shadow: var(--ios-shadow-1);
+        }
+
+        /* Stock View Layout */
+        #stockView {
+            padding-top: 100px;
+            /* Space for compact fixed dashboard */
+        }
+
+        /* Product List - Optimized for more cards */
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            padding: 0 6px;
+        }
+
+        .product-item {
+            background: var(--ios-tertiary-background);
+            border-radius: var(--ios-corner-radius-medium);
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--ios-shadow-1);
+            border: 0.5px solid var(--ios-gray-5);
+            transition: all 0.2s ease;
+            min-height: 80px;
+        }
+
+        .product-item:hover {
+            box-shadow: var(--ios-shadow-2);
+            transform: translateY(-1px);
+        }
+
+        .product-item:active {
+            background: var(--ios-gray-6);
+        }
+
+        .product-item:first-child {
+            border-top-left-radius: var(--ios-corner-radius-medium);
+            border-top-right-radius: var(--ios-corner-radius-medium);
+        }
+
+        .product-item:last-child {
+            border-bottom-left-radius: var(--ios-corner-radius-medium);
+            border-bottom-right-radius: var(--ios-corner-radius-medium);
+        }
+
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--ios-corner-radius-small);
+            background: var(--ios-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--ios-gray-5);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .product-icon:hover {
+            transform: scale(1.05);
+            box-shadow: var(--ios-shadow-2);
+        }
+
+        .product-image-container {
+            background: var(--ios-gray-6) !important;
+            border: 0px solid var(--ios-gray-4);
+        }
+
+        .product-image {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+            border-radius: var(--ios-corner-radius-small);
+            transition: all 0.2s ease;
+            display: block !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        /* Ensure images load properly */
+        .product-image-container img {
+            background: #646465;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .product-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-width: 0;
+            height: 100%;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ios-label);
+            margin-bottom: 6px;
+            letter-spacing: -0.2px;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .product-category {
+            font-size: 11px;
+            color: #7e22ce;
+            background: #f3e8ff;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: inline-block;
+            width: fit-content;
+            text-align: center;
+        }
+
+        .product-price-stock {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: nowrap;
+            text-align: center;
+        }
+
+        .product-price {
+            font-size: 14px;
+            font-weight: 700;
+            color: #22c55e;
+        }
+
+        .price-stock-separator {
+            color: var(--ios-gray-3);
+            font-weight: 300;
+            flex-shrink: 0;
+        }
+
+        .product-stock-badge {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+        }
+
+        .product-stock-badge.stock {
+            background: rgba(0, 122, 255, 0.1);
+            color: #007AFF;
+        }
+
+        .product-stock-badge.low {
+            background: rgba(255, 149, 0, 0.1);
+            color: #FF9500;
+        }
+
+        .product-stock-badge.out {
+            background: rgba(255, 59, 48, 0.1);
+            color: #FF3B30;
+        }
+
+        .stock-status {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: var(--ios-footnote);
+            font-weight: 500;
+        }
+
+        .stock-status.low {
+            color: var(--ios-orange);
+        }
+
+        .stock-status.normal {
+            color: var(--ios-green);
+        }
+
+        .stock-status.out {
+            color: var(--ios-red);
+        }
+
+        /* Bottom Tab Bar */
+        .tab-bar {
+            position: fixed;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 414px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-top: 1px solid rgba(37, 99, 235, 0.08);
+            display: flex;
+            padding: 8px 0 25px;
+            box-shadow: 0 -4px 20px rgba(37, 99, 235, 0.08);
+        }
+
+        .tab-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-item:active {
+            transform: scale(0.9);
+        }
+
+        .tab-item .icon {
+            font-size: 24px;
+            margin-bottom: 2px;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: var(--ios-gray-2);
+        }
+
+        .tab-item .label {
+            font-size: var(--ios-caption-2);
+            font-weight: 600;
+            color: var(--ios-gray-2);
+            letter-spacing: -0.1px;
+        }
+
+        .tab-item.active .icon {
+            color: var(--ios-blue);
+            transform: scale(1.15);
+        }
+
+        .tab-item.active .label {
+            color: var(--ios-blue);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: modalFadeIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            margin: 1px;
+            max-width: 350px;
+            width: 100%;
+            max-height: 80vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.25), 0 8px 20px rgba(0, 0, 0, 0.1);
+            animation: modalSlideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                transform: translateY(100px) scale(0.95);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            padding: 20px 20px 0;
+            text-align: center;
+            position: relative;
+            border-bottom: 0.5px solid var(--ios-gray-5);
+            padding-bottom: 16px;
+        }
+
+        .modal-title {
+            font-size: var(--ios-headline);
+            font-weight: 600;
+            color: var(--ios-label);
+            letter-spacing: -0.2px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 6px;
+            right: 16px;
+            background: var(--ios-gray-6);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--ios-gray-1);
+        }
+
+        .close-btn:active {
+            background: var(--ios-gray-4);
+            transform: scale(0.9);
+        }
+
+        .modal-body {
+            padding: 20px;
+            text-align: center;
+            overflow-y: auto;
+            max-height: calc(80vh - 100px);
+            /* Hide scrollbar but keep scrolling */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .modal-body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .store-detail-image {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--ios-corner-radius-large);
+            background: linear-gradient(135deg, var(--ios-blue) 0%, var(--ios-purple) 100%);
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: var(--ios-shadow-2);
+        }
+
+        .store-detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .store-detail-name {
+            font-size: var(--ios-title-3);
+            font-weight: 600;
+            color: var(--ios-label);
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
+        }
+
+        .store-detail-address {
+            font-size: var(--ios-subhead);
+            color: var(--ios-gray-1);
+            margin-bottom: 20px;
+        }
+
+        .detail-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .detail-stat {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 3px 12px rgba(37, 99, 235, 0.09), 0 1px 3px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+        }
+
+        .detail-stat .value {
+            font-size: var(--ios-title-3);
+            font-weight: 800;
+            background: var(--grad-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.3px;
+        }
+
+        .detail-stat .label {
+            font-size: var(--ios-caption-1);
+            color: var(--ios-gray-1);
+            font-weight: 600;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0px 0px;
+            color: var(--ios-gray-1);
+        }
+
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 2px solid var(--ios-gray-5);
+            border-top: 2px solid var(--ios-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 12px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--ios-gray-1);
+        }
+
+        .empty-state .icon {
+            font-size: 48px;
+            color: var(--ios-gray-2);
+            margin-bottom: 16px;
+        }
+
+        .empty-state .title {
+            font-size: var(--ios-headline);
+            font-weight: 600;
+            color: var(--ios-secondary-label);
+            margin-bottom: 8px;
+        }
+
+        .empty-state .message {
+            font-size: var(--ios-subhead);
+            color: var(--ios-gray-1);
+        }
+
+        /* Store Detail View Styles */
+        .store-detail-nav {
+            display: flex;
+            align-items: center;
+            padding: 3px 20px;
+            background: rgba(255, 255, 255, 0.88);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.08);
+            gap: 16px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.06);
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--ios-blue);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 1px;
+            border-radius: var(--ios-corner-radius-small);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .back-btn:hover {
+            background: var(--ios-gray-6);
+        }
+
+        .store-detail-title {
+            font-size: var(--ios-headline);
+            font-weight: 700;
+            background: var(--grad-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .store-detail-content {
+            padding: 0 16px 100px 16px;
+            margin-top: 0;
+        }
+
+        .store-detail-image-section {
+            text-align: center;
+            margin: 14px 0 20px 0;
+        }
+
+        .store-detail-image-section img {
+            width: 100%;
+            height: 180px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: none;
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.18);
+        }
+
+        .store-info-section {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .store-info-section h2 {
+            font-size: var(--ios-title-2);
+            font-weight: 800;
+            background: var(--grad-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0 0 6px 0;
+        }
+
+        .store-info-section p {
+            font-size: var(--ios-subhead);
+            color: var(--ios-gray-1);
+            margin: 0;
+        }
+
+        .sales-summary-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .summary-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 6px 24px rgba(37, 99, 235, 0.12), 0 2px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--grad-blue);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .summary-icon {
+            font-size: 32px;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
+        }
+
+        .summary-info {
+            flex: 1;
+        }
+
+        .summary-value {
+            font-size: var(--ios-title-3);
+            font-weight: 800;
+            background: var(--grad-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+        }
+
+        .summary-label {
+            font-size: var(--ios-caption-1);
+            color: var(--ios-gray-1);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+        }
+
+        .summary-transactions {
+            font-size: var(--ios-caption-1);
+            color: var(--ios-gray-2);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        /* Shift Sales Cards */
+        .shirt-sales-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .shirt-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 18px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 18px rgba(37, 99, 235, 0.10), 0 2px 4px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+
+        .shirt-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(37, 99, 235, 0.15);
+        }
+
+        .shirt-card:first-child::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #F59E0B, #FBBF24);
+            border-radius: 18px 18px 0 0;
+        }
+
+        .shirt-card:last-child::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7C3AED, #EC4899);
+            border-radius: 18px 18px 0 0;
+        }
+
+        .shirt-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .shirt-value {
+            font-size: var(--ios-title-3);
+            font-weight: 800;
+            color: var(--ios-green);
+            margin-bottom: 4px;
+        }
+
+        .shirt-label {
+            font-size: var(--ios-caption-1);
+            color: var(--ios-gray-1);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+        }
+
+        .record-bill-number {
+            display: none;
+            font-size: var(--ios-headline);
+            font-weight: 600;
+            color: var(--ios-label);
+            margin-bottom: 4px;
+        }
+
+        /* Product Sales */
+        .product-sales-section {
+            margin-bottom: 28px;
+        }
+
+        .product-sales-section h3 {
+            font-size: var(--ios-title-3);
+            font-weight: 800;
+            background: var(--grad-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0 0 14px 0;
+        }
+
+        .product-item {
+            background: var(--ios-tertiary-background);
+            border-radius: var(--ios-corner-radius-medium);
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--ios-shadow-1);
+            border: 0.5px solid var(--ios-gray-5);
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: var(--ios-headline);
+            font-weight: 600;
+            color: var(--ios-label);
+            margin-bottom: 4px;
+        }
+
+        .product-details {
+            font-size: var(--ios-subhead);
+            color: var(--ios-gray-1);
+        }
+
+        .product-sales-data {
+            text-align: right;
+        }
+
+        .product-revenue {
+            font-size: var(--ios-headline);
+            font-weight: 700;
+            color: var(--ios-green);
+            margin-bottom: 4px;
+        }
+
+        .product-quantity {
+            font-size: var(--ios-caption-1);
+            color: var(--ios-gray-1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Sales Record Item Styles */
+        .sales-record-item {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.07), 0 1px 3px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            transition: all 0.2s;
+        }
+
+        .sales-record-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.12);
+        }
+
+        .sales-record-item:active {
+            transform: scale(0.98);
+            background: var(--ios-gray-6);
+        }
+
+        .record-info {
+            flex: 1;
+        }
+
+        .record-bill-number {
+            display: none;
+            font-size: var(--ios-headline);
+            font-weight: 600;
+            color: var(--ios-label);
+            margin-bottom: 4px;
+        }
+
+        .record-details {
+            font-size: var(--ios-subhead);
+            color: var(--ios-gray-1);
+            margin-bottom: 2px;
+        }
+
+        .record-cashier {
+            font-size: var(--ios-caption-1);
+            color: var(--ios-blue);
+            font-weight: 500;
+        }
+
+        .record-amount-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .record-amount {
+            text-align: right;
+        }
+
+        .record-total {
+            font-size: var(--ios-headline);
+            font-weight: 700;
+            color: var(--ios-green);
+            margin-bottom: 4px;
+        }
+
+        .record-time {
+            font-size: var(--ios-caption-1);
+            color: var(--ios-gray-1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-icon {
+            color: var(--ios-blue);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: var(--ios-corner-radius-small);
+            transition: all 0.2s;
+        }
+
+        .detail-icon:hover {
+            background: var(--ios-gray-6);
+        }
+
+        /* Sales Record Detail Modal Styles */
+        .sale-basic-info {
+            background: rgba(240, 244, 255, 0.8);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(37, 99, 235, 0.08);
+        }
+
+        .sale-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 0.5px solid var(--ios-gray-5);
+        }
+
+        .sale-info-row:last-child {
+            border-bottom: none;
+        }
+
+        .sale-label {
+            font-size: var(--ios-subhead);
+            color: var(--ios-gray-1);
+            font-weight: 500;
+        }
+
+        .sale-value {
+            font-size: var(--ios-subhead);
+            color: var(--ios-label);
+            font-weight: 600;
+        }
+
+        .sale-value.sale-total {
+            color: var(--ios-green);
+            font-weight: 700;
+            font-size: var(--ios-headline);
+        }
+
+        .sale-items-section {
+            margin-bottom: 20px;
+        }
+
+        .sale-items-section h4 {
+            font-size: var(--ios-headline);
+            font-weight: 600;
+            color: var(--ios-label);
+            margin: 0 0 12px 0;
+        }
+
+        .sale-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: var(--ios-tertiary-background);
+            border-radius: var(--ios-corner-radius-small);
+            margin-bottom: 8px;
+            border: 0.5px solid var(--ios-gray-5);
+        }
+
+        .sale-item-info {
+            flex: 1;
+        }
+
+        .sale-item-name {
+            font-size: var(--ios-subhead);
+            font-weight: 600;
+            color: var(--ios-label);
+            margin-bottom: 2px;
+        }
+
+        .sale-item-details {
+            font-size: var(--ios-caption-1);
+            color: var(--ios-gray-1);
+        }
+
+        .sale-item-amount {
+            text-align: right;
+        }
+
+        .sale-item-price {
+            font-size: var(--ios-subhead);
+            font-weight: 600;
+            color: var(--ios-blue);
+            margin-bottom: 2px;
+        }
+
+        .sale-item-subtotal {
+            font-size: var(--ios-caption-1);
+            color: var(--ios-gray-1);
+        }
+
+        .sale-summary-section {
+            background: rgba(240, 244, 255, 0.8);
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 20px;
+            border: 1px solid rgba(37, 99, 235, 0.08);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 0.5px solid var(--ios-gray-5);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-row.total-row {
+            border-top: 2px solid var(--ios-gray-4);
+            padding-top: 12px;
+            margin-top: 8px;
+        }
+
+        .summary-label {
+            font-size: var(--ios-subhead);
+            color: var(--ios-gray-1);
+            font-weight: 500;
+        }
+
+        .summary-value {
+            font-size: var(--ios-subhead);
+            color: var(--ios-label);
+            font-weight: 600;
+        }
+
+        .summary-value.discount-value {
+            color: var(--ios-red);
+        }
+
+        .summary-value.total-value {
+            color: var(--ios-green);
+            font-weight: 700;
+            font-size: var(--ios-headline);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .app-container {
+                max-width: 768px;
+                border-radius: var(--ios-corner-radius-xlarge);
+                margin-top: 20px;
+                height: calc(100vh - 40px);
+                box-shadow: var(--ios-shadow-3);
+            }
+
+            .stock-dashboard {
+                max-width: 768px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .stores-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .product-list {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                padding: 0 16px;
+            }
+
+            .product-item {
+                margin-bottom: 0;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .product-list {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
+        }
+
+        /* Safe Area Support */
+        @supports (padding: max(0px)) {
+            .tab-bar {
+                padding-bottom: max(15px, env(safe-area-inset-bottom) + 8px);
+            }
+        }
+
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-content {
+            background: var(--ios-tertiary-background);
+            padding: 30px;
+            border-radius: var(--ios-corner-radius-xlarge);
+            text-align: center;
+            box-shadow: var(--ios-shadow-3);
+            max-width: 200px;
+        }
+
+        .loading-content .spinner {
+            margin: 0 auto 15px;
+        }
+
+        .loading-content p {
+            color: var(--ios-label);
+            font-size: var(--ios-subhead);
+            margin: 0;
+        }
+
+        /* Error toast */
+        .error-toast {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--ios-red);
+            color: white;
+            padding: 12px 20px;
+            border-radius: var(--ios-corner-radius-medium);
+            font-size: var(--ios-subhead);
+            font-weight: 500;
+            z-index: 9999;
+            animation: slideInFromTop 0.3s ease-out;
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                transform: translateX(-50%) translateY(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Image Modal Styles - Enhanced iOS Design with Performance Optimizations */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: modalBackgroundFade 0.2s ease-out;
+            /* Reduced backdrop-filter for better performance */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        @keyframes modalBackgroundFade {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .image-modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            max-width: 85vw;
+            max-height: 85vh;
+            width: auto;
+            height: auto;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: imageModalSlideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            /* Simplified effects for better performance */
+            transform: translateZ(0);
+            will-change: transform;
+        }
+
+        @keyframes imageModalSlideUp {
+            from {
+                transform: translateY(50px) scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .image-modal-header {
+            padding: 18px 24px 16px;
+            background: rgba(248, 248, 248, 0.9);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .image-modal-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 24px;
+            right: 24px;
+            height: 1px;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(0, 0, 0, 0.1) 50%,
+                    transparent 100%);
+        }
+
+        .image-modal-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1d1d1f;
+            letter-spacing: -0.4px;
+            max-width: 280px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .image-modal .close-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            width: 32px;
+            height: 32px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            color: #1d1d1f;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-modal .close-btn:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+        }
+
+        .image-modal .close-btn:active {
+            transform: scale(0.95);
+        }
+
+        .image-modal-body {
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            max-height: calc(85vh - 80px);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+
+        .image-modal-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center,
+                    rgba(255, 255, 255, 0.1) 0%,
+                    rgba(255, 255, 255, 0.05) 70%,
+                    transparent 100%);
+            pointer-events: none;
+        }
+
+        .image-modal-body img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 0 0 20px 20px;
+            transition: opacity 0.2s ease;
+            /* Optimize image rendering */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        /* Performance optimization classes */
+        .modal-loading .image-modal-body img {
+            opacity: 0.7;
+        }
+
+        .modal-closing {
+            animation: modalFadeOut 0.15s ease-out forwards;
+        }
+
+        @keyframes modalFadeOut {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+        }
+
+        /* Responsive adjustments for image modal */
+        @media (max-width: 480px) {
+            .image-modal {
+                padding: 10px;
+            }
+
+            .image-modal-content {
+                max-width: 95vw;
+                max-height: 95vh;
+                border-radius: 20px;
+            }
+
+            .image-modal-header {
+                padding: 14px 18px 12px;
+            }
+
+            .image-modal-title {
+                font-size: 16px;
+                max-width: 200px;
+                font-weight: 600;
+            }
+
+            .image-modal .close-btn {
+                width: 28px;
+                height: 28px;
+                border-radius: 14px;
+            }
+
+            .image-modal-body {
+                max-height: calc(95vh - 70px);
+            }
+
+            .image-modal-body img {
+                border-radius: 0 0 16px 16px;
+            }
+        }
+
+        /* Dark mode support for image modal */
+        @media (prefers-color-scheme: dark) {
+            .image-modal {
+                background: rgba(0, 0, 0, 0.8);
+            }
+
+            .image-modal-content {
+                background: rgba(28, 28, 30, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .image-modal-header {
+                background: rgba(28, 28, 30, 0.9);
+            }
+
+            .image-modal-title {
+                color: #f2f2f7;
+            }
+
+            .image-modal .close-btn {
+                background: rgba(44, 44, 46, 0.9);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                color: #f2f2f7;
+            }
+
+            .image-modal .close-btn:hover {
+                background: rgba(58, 58, 60, 1);
+            }
+
+            .image-modal-body {
+                background: rgba(28, 28, 30, 0.9);
+            }
+        }
+
+        /* ===== GLASSMORPHISM GLOBAL OVERRIDE ===== */
+        /* Floating particle canvas */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 414px;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .app-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Global glass mixin applied to all cards */
+        .stat-card,
+        .store-card,
+        .summary-card,
+        .shirt-card,
+        .sales-record-item,
+        .detail-stat,
+        .date-picker,
+        .modal-content,
+        .product-item {
+            background: rgba(255, 255, 255, 0.55) !important;
+            backdrop-filter: blur(20px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+            border: 1px solid rgba(255, 255, 255, 0.75) !important;
+        }
+
+        .nav-bar,
+        .tab-bar,
+        .stock-dashboard,
+        .store-detail-nav {
+            background: rgba(255, 255, 255, 0.65) !important;
+            backdrop-filter: blur(30px) saturate(200%) !important;
+            -webkit-backdrop-filter: blur(30px) saturate(200%) !important;
+        }
+
+        /* ===== CARD ENTRANCE ANIMATIONS ===== */
+        @keyframes cardSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px) scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes cardFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.93);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes floatBob {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 20px rgba(37, 99, 235, 0.10), 0 1px 4px rgba(0, 0, 0, 0.05);
+            }
+
+            50% {
+                box-shadow: 0 8px 32px rgba(37, 99, 235, 0.22), 0 4px 12px rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Animated gradient background */
+        .app-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(-45deg,
+                    rgba(238, 242, 255, 0.9) 0%,
+                    rgba(224, 242, 254, 0.9) 25%,
+                    rgba(236, 253, 245, 0.9) 50%,
+                    rgba(245, 243, 255, 0.9) 75%,
+                    rgba(238, 242, 255, 0.9) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .app-main,
+        .view,
+        .store-detail-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Pulsing glow on stat cards */
+        .stat-card {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .stat-card:nth-child(2) {
+            animation-delay: 0.75s;
+        }
+
+        .stat-card:nth-child(3) {
+            animation-delay: 1.5s;
+        }
+
+        .stat-card:nth-child(4) {
+            animation-delay: 2.25s;
+        }
+
+        /* Floating bob on store cards */
+        .store-card:nth-child(odd) {
+            animation: floatBob 0s ease-in-out infinite;
+        }
+
+        .store-card:nth-child(even) {
+            animation: floatBob 0s ease-in-out infinite 1.5s;
+        }
+
+        .store-card:hover {
+            animation: none !important;
+        }
+
+        /* Shimmer on nav title */
+        .nav-title {
+            background: linear-gradient(90deg, #2563EB 0%, #7C3AED 40%, #06B6D4 60%, #2563EB 100%) !important;
+            background-size: 200% auto !important;
+            animation: shimmer 3s linear infinite !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+
+        /* Ripple effect class */
+        .ripple-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple-wave {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.35) 0%, transparent 70%);
+            transform: scale(0);
+            animation: rippleAnim 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes rippleAnim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Coin burst particles on revenue cards */
+        .coin-particle {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #FFD700, #FFA500);
+            pointer-events: none;
+            z-index: 9999;
+            animation: coinBurst 1s ease-out forwards;
+        }
+
+        @keyframes coinBurst {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Toast notification */
+        .fun-toast {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: rgba(30, 30, 40, 0.88);
+            backdrop-filter: blur(16px);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            z-index: 9999;
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            white-space: nowrap;
+            pointer-events: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        .fun-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Card entry stagger for sales records */
+        .sales-record-item {
+            animation: cardSlideUp 0.4s cubic-bezier(0.34, 1.1, 0.64, 1) both;
+        }
+
+        /* Neon border on active tab */
+        .tab-item.active .icon {
+            filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.6));
+        }
+
+        /* Glowing summary card */
+        .summary-card {
+            animation: pulseGlow 3s ease-in-out infinite 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Particle Canvas Background -->
+    <canvas id="particleCanvas"></canvas>
+    <!-- Fun Toast Notification -->
+    <div class="fun-toast" id="funToast"></div>
+
+    <div class="app-container">
+        <!-- Status Bar -->
+
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-title" id="navTitle">
+                Sales<br>
+            </div>
+            <div class="nav-subtitle" id="navSubtitle">Today's Performance</div>
+        </div>
+
+
+        <!-- Main Content -->
+        <div class="app-main">
+
+            <!-- Sales View -->
+            <div id="salesView" class="view active" style="padding: 16px 14px 0;">
+                <!-- Date Selector & Refresh -->
+                <div class="date-selector-section" style="padding: 0; margin-bottom: 14px;">
+                    <div class="date-picker">
+                        <label for="salesDatePicker">
+                            <i class="material-icons">event</i>
+                            <span>Date</span>
+                        </label>
+                        <input type="date" id="salesDatePicker" value="">
+                    </div>
+
+                </div>
+
+                <!-- Stats Overview -->
+                <div class="stats-overview" style="margin-bottom: 16px;">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="icon">💰</div>
+                            <div class="value" id="totalRevenue">RM 0</div>
+                            <div class="label">Revenue</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon">📊</div>
+                            <div class="value" id="totalSales">0</div>
+                            <div class="label">Sales</div>
+                        </div>
+                        <div class="stat-card" onclick="openTop3Modal('qty')" style="cursor:pointer;">
+                            <div class="label" style="margin-bottom:4px;">Today's Top Qty</div>
+                            <div class="top3-list" id="top3QtyList">
+                                <div class="top3-empty">Loading...</div>
+                            </div>
+                        </div>
+                        <div class="stat-card" onclick="openTop3Modal('rev')" style="cursor:pointer;">
+                            <div class="label" style="margin-bottom:4px;">Today's Top RM</div>
+                            <div class="top3-list" id="top3RevenueList">
+                                <div class="top3-empty">Loading...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stores Section -->
+                <div class="section-header" style="padding: 0 2px; margin-top: 4px;">
+                    <div class="section-title">🏪 Stores</div>
+                </div>
+                <div class="stores-grid" id="storesGrid" style="padding-bottom: 8px;">
+                    <!-- Store cards will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Stock View -->
+            <div id="stockView" class="view">
+                <!-- Fixed Stock Dashboard -->
+                <div class="stock-dashboard">
+                    <!-- Store & Category Row -->
+                    <div class="dashboard-row">
+                        <div class="dashboard-item">
+                            <div class="dashboard-label">
+                                <i class="material-icons">store</i>
+                                <span>Store</span>
+                            </div>
+                            <select id="storeSelector" class="dashboard-select">
+                                <!-- Store options will be loaded dynamically -->
+                            </select>
+                        </div>
+                        <div class="dashboard-item">
+                            <div class="dashboard-label">
+                                <i class="material-icons">category</i>
+                                <span>Category</span>
+                            </div>
+                            <select id="categoryFilter" class="dashboard-select">
+                                <option value="all">All Categories</option>
+                                <!-- Category options will be loaded dynamically -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Search Row -->
+                    <div class="dashboard-row">
+                        <div class="search-container">
+                            <div class="search-bar">
+                                <i class="material-icons">search</i>
+                                <input type="text" placeholder="Search" id="productSearch">
+                            </div>
+                        </div>
+                        <div class="filter-control">
+                            <div class="filter-tab active" data-filter="all">All</div>
+                            <div class="filter-tab" data-filter="low">Low Stock</div>
+                            <div class="filter-tab" data-filter="out">Out of Stock</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product List -->
+                <div class="product-list" id="productList">
+                    <!-- Product items will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Store Detail View -->
+            <div id="storeDetailView" class="view">
+                <!-- Store Detail Navigation -->
+                <div class="store-detail-nav">
+                    <button class="back-btn" onclick="goBackToSales()">
+                        <i class="material-icons">arrow_back_ios</i>
+                        <span class="back-btn">Back</span>
+                    </button>
+                    <div class="store-detail-title" id="storeDetailTitle"></div>
+                </div>
+
+                <!-- Store Detail Content -->
+                <div class="store-detail-content">
+                    <!-- Store Image -->
+                    <div class="store-detail-image-section">
+                        <img id="storeDetailImage" src="../icons/pos.png" alt="Store Image">
+                    </div>
+
+                    <!-- Store Info -->
+                    <div class="store-info-section">
+                        <h2 id="storeDetailName">Store Name</h2>
+                        <p id="storeDetailLocation">Location</p>
+                    </div>
+
+                    <!-- Sales Summary -->
+                    <div class="sales-summary-section">
+                        <div class="summary-card">
+                            <div class="summary-icon">💰</div>
+                            <div class="summary-info">
+                                <div class="summary-value" id="storeDetailTotalSales"
+                                    style="font-size: 24px; color: #1e7be9; font-weight: 900;">
+                                    RM 0
+                                </div>
+                                <div class="summary-label">Total Sales</div>
+                                <div class="summary-transactions" id="storeDetailTransactionText">0 sales transaction
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shift Sales -->
+                    <div class="shirt-sales-section">
+                        <div class="shirt-card">
+                            <div class="shirt-icon">☀️</div>
+                            <div class="shirt-value" id="shift1Sales"
+                                style="font-size: 16px; color: #f0a111; font-weight: 900;">RM 0</div>
+                            <div class="shirt-label">Shift 1</div>
+                        </div>
+                        <div class="shirt-card">
+                            <div class="shirt-icon">🌙</div>
+                            <div class="shirt-value" id="shift2Sales"
+                                style="font-size: 16px; color: #9706f9; font-weight: 900;">RM 0</div>
+                            <div class="shirt-label">Shift 2</div>
+                        </div>
+                    </div>
+
+                    <!-- Product Sales -->
+                    <div class="product-sales-section">
+                        <h3>Sales Records</h3>
+                        <div id="salesRecordsList">
+                            <!-- Sales records will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Bar -->
+        <div class="tab-bar">
+            <div class="tab-item active" data-view="sales">
+                <i class="material-icons icon">trending_up</i>
+                <span class="label">Sales</span>
+            </div>
+            <div class="tab-item" data-view="stock">
+                <i class="material-icons icon">inventory_2</i>
+                <span class="label">Stock</span>
+            </div>
+            <div class="tab-item" onclick="logout()">
+                <i class="material-icons icon">logout</i>
+                <span class="label">Logout</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Store Detail Modal -->
+    <div id="storeDetailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Store Details</div>
+                <button class="close-btn" onclick="closeStoreDetail()">
+                    <i class="material-icons" style="font-size: 18px;">close</i>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="detail-stats-grid">
+                    <div class="detail-stat">
+                        <div class="value" id="storeDetailRevenue">RM 0</div>
+                        <div class="label">Revenue</div>
+                    </div>
+                    <div class="detail-stat">
+                        <div class="value" id="storeDetailSales">0</div>
+                        <div class="label">Sales</div>
+                    </div>
+                    <div class="detail-stat">
+                        <div class="value" id="storeDetailProducts">0</div>
+                        <div class="label">Products</div>
+                    </div>
+                    <div class="detail-stat">
+                        <div class="value" id="storeDetailOrders">0</div>
+                        <div class="label">Orders</div>
+                    </div>
+                </div>
+
+                <div id="storeDetailSalesList">
+                    <!-- Detailed sales list will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sales Record Detail Modal -->
+    <div id="salesRecordDetailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Sales Record Details</div>
+                <button class="close-btn" onclick="closeSalesRecordDetail()">
+                    <i class="material-icons" style="font-size: 18px;">close</i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Sale Basic Info -->
+                <div class="sale-basic-info">
+                    <div class="sale-info-row">
+                        <span class="sale-label">Bill Number:</span>
+                        <span class="sale-value" id="saleDetailBillNumber">-</span>
+                    </div>
+                    <div class="sale-info-row">
+                        <span class="sale-label">Time:</span>
+                        <span class="sale-value" id="saleDetailDateTime">-</span>
+                    </div>
+                    <div class="sale-info-row">
+                        <span class="sale-label">Shift:</span>
+                        <span class="sale-value" id="saleDetailShift">-</span>
+                    </div>
+                    <div class="sale-info-row">
+                        <span class="sale-label">Cashier:</span>
+                        <span class="sale-value" id="saleDetailCashier">-</span>
+                    </div>
+                    <div class="sale-info-row">
+                        <span class="sale-label">Total Amount:</span>
+                        <span class="sale-value sale-total" id="saleDetailTotal">RM 0</span>
+                    </div>
+                </div>
+
+                <!-- Items List -->
+                <div class="sale-items-section">
+                    <h4>Items Purchased</h4>
+                    <div id="saleDetailItemsList">
+                        <!-- Items will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="sale-summary-section">
+                    <div class="summary-row">
+                        <span class="summary-label">Subtotal:</span>
+                        <span class="summary-value" id="saleDetailSubtotal">RM 0</span>
+                    </div>
+                    <div class="summary-row" id="discountRow" style="display: none;">
+                        <span class="summary-label">Discount:</span>
+                        <span class="summary-value discount-value" id="saleDetailDiscount">-RM 0</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span class="summary-label">Total:</span>
+                        <span class="summary-value total-value" id="saleDetailFinalTotal">RM 0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Top 3 Detail Modal -->
+    <div id="top3Modal" style="
+        display:none; position:fixed; z-index:2000;
+        top:0; left:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.45);
+        backdrop-filter:blur(16px);
+        -webkit-backdrop-filter:blur(16px);
+        align-items:center; justify-content:center;
+        padding:20px;
+        animation:modalFadeIn 0.25s ease;
+    ">
+        <div style="
+            background:var(--ios-tertiary-background);
+            border-radius:20px;
+            width:100%; max-width:380px;
+            max-height:80vh;
+            display:flex; flex-direction:column;
+            box-shadow:0 20px 60px rgba(0,0,0,0.3);
+            overflow:hidden;
+            animation:modalSlideUp 0.3s cubic-bezier(0.175,0.885,0.32,1.275);
+        ">
+            <!-- Header -->
+            <div style="
+                display:flex; align-items:center; justify-content:space-between;
+                padding:18px 20px 14px;
+                border-bottom:0.5px solid var(--ios-gray-5);
+                flex-shrink:0;
+            ">
+                <div id="top3ModalTitle" style="
+                    font-size:17px; font-weight:700;
+                    color:var(--ios-label); letter-spacing:-0.3px;
+                "></div>
+                <button onclick="closeTop3Modal()" style="
+                    background:var(--ios-gray-6); border:none;
+                    width:30px; height:30px; border-radius:15px;
+                    display:flex; align-items:center; justify-content:center;
+                    cursor:pointer; color:var(--ios-gray-1);
+                    font-size:16px; transition:all 0.2s;
+                ">&times;</button>
+            </div>
+            <!-- Body -->
+            <div id="top3ModalBody" style="
+                overflow-y:auto; padding:16px 20px 20px;
+                flex:1;
+                -ms-overflow-style:none; scrollbar-width:none;
+            "></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/database.js"></script>
+    <script src="../js/network-monitor.js"></script>
+    <script src="../js/sw-helper.js"></script>
+    <!-- Product Image Mapping - 产品图片映射配置 -->
+    <script src="../js/product-image-map.js"></script>
+    <script src="../js/adminp.js"></script>
+
+    <!-- ===== INTERACTIVE MAGIC SYSTEM ===== -->
+    <script>
+        (function () {
+            'use strict';
+
+            /* ---- 1. WEB AUDIO API Sound System ---- */
+            let audioCtx = null;
+            function getAudioCtx() {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                return audioCtx;
+            }
+            function playTone(freq, type, duration, vol) {
+                try {
+                    const ctx = getAudioCtx();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain); gain.connect(ctx.destination);
+                    osc.type = type || 'sine';
+                    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(freq * 0.5, ctx.currentTime + duration);
+                    gain.gain.setValueAtTime(vol || 0.12, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+                    osc.start(ctx.currentTime);
+                    osc.stop(ctx.currentTime + duration);
+                } catch (e) { }
+            }
+            function soundClick() { playTone(520, 'sine', 0.09, 0.10); }
+            function soundCard() { playTone(660, 'triangle', 0.12, 0.12); setTimeout(() => playTone(880, 'sine', 0.08, 0.06), 60); }
+            function soundCoin() { [880, 1047, 1319].forEach((f, i) => setTimeout(() => playTone(f, 'sine', 0.15, 0.10), i * 60)); }
+            function soundSuccess() { [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => playTone(f, 'triangle', 0.18, 0.09), i * 80)); }
+            function soundNav() { playTone(400, 'sine', 0.07, 0.08); }
+
+            /* ---- 2. RIPPLE EFFECT ---- */
+            function addRipple(el, e) {
+                el.style.position = 'relative';
+                el.style.overflow = 'hidden';
+                const rect = el.getBoundingClientRect();
+                const x = (e && e.clientX ? e.clientX : rect.left + rect.width / 2) - rect.left;
+                const y = (e && e.clientY ? e.clientY : rect.top + rect.height / 2) - rect.top;
+                const size = Math.max(rect.width, rect.height) * 1.8;
+                const wave = document.createElement('div');
+                wave.className = 'ripple-wave';
+                wave.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + (x - size / 2) + 'px;top:' + (y - size / 2) + 'px;position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.28) 0%,transparent 70%);transform:scale(0);animation:rippleAnim 0.6s linear;pointer-events:none;z-index:999;';
+                el.appendChild(wave);
+                setTimeout(() => wave.remove(), 650);
+            }
+
+            /* ---- 3. COIN BURST PARTICLES ---- */
+            function spawnCoins(x, y, count) {
+                for (let i = 0; i < (count || 8); i++) {
+                    const coin = document.createElement('div');
+                    const angle = (Math.PI * 2 / (count || 8)) * i;
+                    const dist = 45 + Math.random() * 65;
+                    coin.style.cssText = 'position:fixed;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FFD700,#FFA500);pointer-events:none;z-index:9999;left:' + x + 'px;top:' + y + 'px;animation:coinBurst 0.9s ease-out forwards;--tx:' + (Math.cos(angle) * dist) + 'px;--ty:' + (Math.sin(angle) * dist - 40) + 'px;';
+                    document.body.appendChild(coin);
+                    setTimeout(() => coin.remove(), 950);
+                }
+            }
+
+            /* ---- 4. FUN TOAST ---- */
+            let toastTimer = null;
+            function showToast(msg) {
+                const t = document.getElementById('funToast');
+                if (!t) return;
+                if (toastTimer) clearTimeout(toastTimer);
+                t.textContent = msg;
+                t.classList.add('show');
+                toastTimer = setTimeout(() => t.classList.remove('show'), 1000);
+            }
+
+            /* ---- 5. PARTICLE CANVAS ---- */
+            const canvas = document.getElementById('particleCanvas');
+            const ctx2 = canvas ? canvas.getContext('2d') : null;
+            const parts = [];
+            function resizeC() { if (canvas) { canvas.width = Math.min(414, window.innerWidth); canvas.height = window.innerHeight; } }
+            resizeC();
+            window.addEventListener('resize', resizeC);
+
+            const COLORS = ['#2563EB', '#7C3AED', '#06B6D4', '#10B981', '#EC4899', '#F59E0B'];
+            for (let i = 0; i < 30; i++) {
+                parts.push({
+                    x: Math.random() * 414,
+                    y: Math.random() * window.innerHeight,
+                    r: 1.5 + Math.random() * 3.5,
+                    vx: (Math.random() - .5) * 0.35,
+                    vy: -(0.25 + Math.random() * 0.45),
+                    alpha: Math.random() * 0.14,
+                    maxA: 0.08 + Math.random() * 0.14,
+                    phase: Math.random() * Math.PI * 2,
+                    color: COLORS[Math.floor(Math.random() * COLORS.length)]
+                });
+            }
+
+            if (canvas) {
+                (function animate(t) {
+                    ctx2.clearRect(0, 0, canvas.width, canvas.height);
+                    parts.forEach(p => {
+                        p.x += p.vx + Math.sin(t * .001 + p.phase) * 0.25;
+                        p.y += p.vy;
+                        if (p.y < -10) { p.y = canvas.height + 5; p.x = Math.random() * canvas.width; p.alpha = 0; }
+                        if (p.alpha < p.maxA) p.alpha += 0.0015;
+                        ctx2.beginPath();
+                        ctx2.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                        ctx2.fillStyle = p.color;
+                        ctx2.globalAlpha = p.alpha;
+                        ctx2.fill();
+                        ctx2.globalAlpha = 1;
+                    });
+                    requestAnimationFrame(animate);
+                })(0);
+            }
+
+            /* ---- 6. ATTACH CARD EVENTS ---- */
+            const STAT_TOASTS = ['💰 Today\'s Revenue!', '📊 Transaction Count!', '🏆 Top Qty Products!', '💎 Top Revenue Items!'];
+            function attachEffects() {
+                document.querySelectorAll('.stat-card').forEach((el, i) => {
+                    if (el._mg) return; el._mg = true;
+                    el.addEventListener('click', function (e) {
+                        soundCoin(); addRipple(this, e);
+                        const r = this.getBoundingClientRect();
+                        spawnCoins(r.left + r.width / 2, r.top + r.height / 2, 10);
+                        showToast(STAT_TOASTS[i] || '✨ Stats!');
+                    });
+                });
+                document.querySelectorAll('.store-card').forEach(el => {
+                    if (el._mg) return; el._mg = true;
+                    el.addEventListener('click', function (e) { soundCard(); addRipple(this, e); showToast('🏪 Loading store data...'); });
+                });
+                document.querySelectorAll('.summary-card').forEach(el => {
+                    if (el._mg) return; el._mg = true;
+                    el.addEventListener('click', function (e) {
+                        soundSuccess(); addRipple(this, e);
+                        const r = this.getBoundingClientRect();
+                        spawnCoins(r.left + r.width / 2, r.top + r.height / 2, 14);
+                        showToast('💰 Total Sales Summary!');
+                    });
+                });
+                document.querySelectorAll('.shirt-card').forEach(el => {
+                    if (el._mg) return; el._mg = true;
+                    el.addEventListener('click', function (e) {
+                        soundCard(); addRipple(this, e);
+                        const r = this.getBoundingClientRect();
+                        spawnCoins(r.left + r.width / 2, r.top + r.height / 2, 6);
+                    });
+                });
+                document.querySelectorAll('.sales-record-item').forEach((el, i) => {
+                    if (el._mg) return; el._mg = true;
+                    el.style.animationDelay = (i * 0.065) + 's';
+                    el.addEventListener('click', function (e) { soundClick(); addRipple(this, e); });
+                });
+                document.querySelectorAll('.detail-stat').forEach(el => {
+                    if (el._mg) return; el._mg = true;
+                    el.addEventListener('click', function (e) {
+                        soundCoin(); addRipple(this, e);
+                        const r = this.getBoundingClientRect();
+                        spawnCoins(r.left + r.width / 2, r.top + r.height / 2, 6);
+                    });
+                });
+            }
+
+            document.querySelectorAll('.tab-item').forEach(el => {
+                el.addEventListener('click', () => soundNav());
+            });
+            document.querySelectorAll('.back-btn').forEach(el => {
+                el.addEventListener('click', () => soundNav());
+            });
+            const dp = document.getElementById('salesDatePicker');
+            if (dp) dp.addEventListener('change', () => { soundSuccess(); showToast('📅 Date updated!'); });
+
+            setInterval(attachEffects, 1000);
+            attachEffects();
+
+
+
+            /* ---- 8. Welcome ---- */
+            setTimeout(() => { soundSuccess(); showToast('✨ SmartProfits Dashboard ready!'); }, 900);
+
+        })();
+    </script>
+</body>
+
+</html>
