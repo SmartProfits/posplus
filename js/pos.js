@@ -609,9 +609,6 @@ function getStockStatusClass(stock) {
 
 // 初始化事件监听器
 function initEventListeners() {
-    // 侧边栏切换
-    sidebarToggle.addEventListener('click', toggleSidebar);
-
     // 商品搜索和过滤
     if (productSearch) {
         console.log("找到搜索框元素:", productSearch); // 添加调试日志
@@ -2811,38 +2808,73 @@ function logout() {
 // 显示收银员历史
 function showCashierHistory() {
     let historyHtml = `
-        <div class="cashier-history">
-            <h3>Cashier Shift History</h3>
-            <table class="history-table">
-                <thead>
-                    <tr>
-                        <th>Cashier</th>
-                        <th>Shift</th>
-                        <th>Shift Start Time</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div class="cashier-modal-header" style="border-bottom: none; padding-bottom: 16px;">
+            <div class="cashier-icon-wrapper" style="background: linear-gradient(135deg, #f3e8ff, #d8b4fe); border-color: rgba(168, 85, 247, 0.2); box-shadow: 0 8px 16px rgba(168, 85, 247, 0.12);">
+                <i class="material-icons" style="color: #a855f7;">history</i>
+            </div>
+            <h2>Shift History</h2>
+            <p>Recent cashier duty records</p>
+        </div>
+        <div class="cashier-history-body" style="width: 100%;">
+            <div class="history-table-container" style="max-height: 400px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 24px;">
+                <table class="premium-history-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead style="background: #f8fafc; position: sticky; top: 0; z-index: 1;">
+                        <tr>
+                            <th style="padding: 12px 16px; font-weight: 600; color: #475569; font-size: 13px; border-bottom: 2px solid #e2e8f0;">Cashier</th>
+                            <th style="padding: 12px 16px; font-weight: 600; color: #475569; font-size: 13px; border-bottom: 2px solid #e2e8f0;">Shift</th>
+                            <th style="padding: 12px 16px; font-weight: 600; color: #475569; font-size: 13px; border-bottom: 2px solid #e2e8f0;">Time Started</th>
+                        </tr>
+                    </thead>
+                    <tbody>
     `;
 
     if (cashierHistory.length === 0) {
-        historyHtml += '<tr><td colspan="3" class="no-data">No shift records available</td></tr>';
+        historyHtml += `
+            <tr>
+                <td colspan="3" style="padding: 32px 16px; text-align: center;">
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; color: #94a3b8;">
+                        <i class="material-icons" style="font-size: 32px; color: #cbd5e1;">inbox</i>
+                        <span style="font-size: 14px; font-weight: 500;">No shift records available</span>
+                    </div>
+                </td>
+            </tr>
+        `;
     } else {
         // 倒序显示，最新的在最上面
         for (let i = cashierHistory.length - 1; i >= 0; i--) {
             const record = cashierHistory[i];
+            const isFirstShift = record.shift === '1st Shift';
+            const shiftBadgeBg = isFirstShift ? '#fffbeb' : '#f5f3ff';
+            const shiftBadgeColor = isFirstShift ? '#d97706' : '#7c3aed';
+            const cashierInitial = record.cashierName ? record.cashierName.charAt(0).toUpperCase() : '?';
+
             historyHtml += `
-                <tr>
-                    <td>${record.cashierName}</td>
-                    <td>${record.shift || 'N/A'}</td>
-                    <td>${record.shiftTime || record.startTime || 'N/A'}</td>
+                <tr style="border-bottom: 1px solid #f1f5f9; transition: background 0.2s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                    <td style="padding: 14px 16px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 32px; height: 32px; border-radius: 50%; background: #e2e8f0; color: #475569; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; flex-shrink: 0;">${cashierInitial}</div>
+                            <span style="font-weight: 600; color: #1e293b; font-size: 14px;">${record.cashierName || 'N/A'}</span>
+                        </div>
+                    </td>
+                    <td style="padding: 14px 16px;">
+                        <span style="background: ${shiftBadgeBg}; color: ${shiftBadgeColor}; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap;">${record.shift || 'N/A'}</span>
+                    </td>
+                    <td style="padding: 14px 16px; color: #64748b; font-size: 13px;">
+                        ${record.shiftTime || record.startTime || 'N/A'}
+                    </td>
                 </tr>
             `;
         }
     }
 
     historyHtml += `
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+            <button class="cashier-submit-btn close-history-btn" style="background: linear-gradient(135deg, #94a3b8, #64748b); box-shadow: 0 8px 20px rgba(100, 116, 139, 0.25);">
+                <span>Close History</span>
+                <i class="material-icons">close</i>
+            </button>
         </div>
     `;
 
@@ -2851,23 +2883,40 @@ function showCashierHistory() {
     historyModal.className = 'modal';
     historyModal.id = 'cashierHistoryModal';
     historyModal.innerHTML = `
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2><i class="material-icons">history</i> Cashier History</h2>
+        <div class="modal-content cashier-modal" style="max-width: 600px; padding: 32px 36px; animation: slideInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
             ${historyHtml}
         </div>
     `;
+
+    // 添加动画样式 (如果需要)
+    if (!document.getElementById('history-modal-animation')) {
+        const style = document.createElement('style');
+        style.id = 'history-modal-animation';
+        style.textContent = `
+            @keyframes slideInUp {
+                from { transform: translateY(40px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
 
     // 添加到DOM
     document.body.appendChild(historyModal);
 
     // 显示模态框
-    historyModal.style.display = 'block';
+    historyModal.style.display = 'flex';
+    historyModal.style.alignItems = 'center';
+    historyModal.style.justifyContent = 'center';
 
     // 添加关闭按钮事件
-    const closeBtn = historyModal.querySelector('.close');
+    const closeBtn = historyModal.querySelector('.close-history-btn');
     closeBtn.addEventListener('click', () => {
-        historyModal.style.display = 'none';
+        historyModal.style.opacity = '0';
+        historyModal.querySelector('.modal-content').style.transform = 'translateY(20px)';
+        historyModal.querySelector('.modal-content').style.transition = 'all 0.2s ease';
+        historyModal.style.transition = 'opacity 0.2s ease';
+        
         // 移除模态框
         setTimeout(() => {
             document.body.removeChild(historyModal);

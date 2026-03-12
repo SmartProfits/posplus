@@ -41,11 +41,12 @@
         }
 
         .store-info {
-            padding: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 24px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             flex-direction: column;
             align-items: center;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
         }
 
         .store-logo {
@@ -54,47 +55,72 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .store-logo:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .store-logo img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
         }
 
         .store-title {
             text-align: center;
             width: 100%;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .store-title h2 {
             margin: 0;
-            font-size: 28px;
-            font-weight: 600;
+            font-size: 26px;
+            font-weight: 700;
             font-family: 'Poppins', sans-serif;
-            color: white;
+            background: linear-gradient(135deg, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 0.5px;
         }
 
         .store-details {
             width: 100%;
-            font-size: 14px;
+            font-size: 13px;
+            color: #94a3b8;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .store-details p {
-            margin: 5px 0;
+            margin: 8px 0;
             display: flex;
             align-items: center;
+            color: #cbd5e1;
         }
 
         .store-details .material-icons {
             font-size: 16px;
-            margin-right: 5px;
+            margin-right: 8px;
+            color: #6366f1;
         }
 
         .shift-history-container {
-            margin-top: 12px;
+            margin-top: 16px;
             width: 100%;
         }
 
@@ -102,23 +128,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 8px 12px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 5px;
+            padding: 10px 14px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
             color: white;
             font-size: 13px;
+            font-weight: 500;
             cursor: pointer;
             width: 100%;
-            transition: all 0.2s ease;
-            gap: 6px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 8px;
             font-family: 'Poppins', sans-serif;
         }
 
         .modern-btn:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
             transform: translateY(-2px);
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .modern-btn:active {
@@ -127,7 +155,7 @@
         }
 
         .modern-btn i {
-            font-size: 16px;
+            font-size: 18px;
         }
 
         /* 1st Shift Cashier Name Style */
@@ -292,28 +320,43 @@
 <body>
     <!-- 收银员姓名输入模态框 -->
     <div id="cashierNameModal" class="modal">
-        <div class="modal-content">
-            <h2><i class="material-icons">person</i> Cashier Information</h2>
-            <p>Please enter the name of the current cashier on duty</p>
-            <form id="cashierNameForm">
-                <div class="form-group">
-                    <label for="cashierName"><i class="material-icons">badge</i> Name:</label>
-                    <input type="text" id="cashierName" required>
+        <div class="modal-content cashier-modal">
+            <div class="cashier-modal-header">
+                <div class="cashier-icon-wrapper">
+                    <i class="material-icons">person_outline</i>
                 </div>
-                <div class="form-group">
-                    <label for="cashierShift"><i class="material-icons">schedule</i> Shift:</label>
-                    <select id="cashierShift" required>
-                        <option value="1st Shift">1st Shift</option>
-                        <option value="2nd Shift">2nd Shift</option>
-                    </select>
+                <h2>Cashier Information</h2>
+                <p>Welcome! Please set your identity for this session</p>
+            </div>
+            <form id="cashierNameForm" class="cashier-form">
+                <div class="cashier-form-group">
+                    <label for="cashierName"><i class="material-icons">badge</i> Full Name</label>
+                    <input type="text" id="cashierName" required placeholder="E.g. John Doe" autocomplete="off">
                 </div>
-                <button type="submit"><i class="material-icons">save</i> Confirm</button>
+                <div class="cashier-form-group">
+                    <label for="cashierShift"><i class="material-icons">schedule</i> Active Shift</label>
+                    <div class="cashier-select-wrapper">
+                        <select id="cashierShift" required>
+                            <option value="" disabled selected>Select your shift</option>
+                            <option value="1st Shift">1st Shift (Opening)</option>
+                            <option value="2nd Shift">2nd Shift (Closing)</option>
+                        </select>
+                        <i class="material-icons select-arrow">expand_more</i>
+                    </div>
+                </div>
+                <button type="submit" class="cashier-submit-btn">
+                    <span>Confirm Identity</span>
+                    <i class="material-icons">check_circle_outline</i>
+                </button>
             </form>
-            <div class="tip-container">
-                <p class="tip"><i class="material-icons">tips_and_updates</i> Tips:</p>
+            <div class="cashier-tip-container">
+                <div class="tip-header">
+                    <i class="material-icons">lightbulb_outline</i>
+                    <span>Tips</span>
+                </div>
                 <ul>
-                    <li>When changing shifts, click the edit button in the sidebar to update cashier information</li>
-                    <li>Cashier names will be displayed on all sales records and receipts</li>
+                    <li>Need to change shifts? Click the <i class="material-icons inline-icon">edit</i> button next to your name in the sidebar later.</li>
+                    <li>Cashier names are actively recorded on all digital receipts and sales history.</li>
                 </ul>
             </div>
         </div>
@@ -328,9 +371,6 @@
 
     <div class="pos-container">
         <div class="sidebar" id="sidebar">
-            <div class="sidebar-toggle" id="sidebarToggle">
-                <i class="material-icons" id="toggleIcon">chevron_left</i>
-            </div>
             <div class="sidebar-content">
                 <div class="store-info">
                     <div class="store-logo">
