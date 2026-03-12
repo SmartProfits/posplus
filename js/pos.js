@@ -5283,8 +5283,41 @@ function setupPendingTransfersListener() {
     });
 }
 
-// 在页面加载后启动监听器
+// 暗黑模式主题切换功能
+function initDarkMode() {
+    const darkModeBtn = document.getElementById('darkModeBtn');
+    const darkModeIcon = document.getElementById('darkModeIcon');
+    if (!darkModeBtn) return;
+
+    // 从 localStorage 中读取用户的主题偏好设置
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    
+    // 如果之前开启了，直接给 body 加上 class
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        if(darkModeIcon) darkModeIcon.textContent = 'light_mode';
+    }
+
+    darkModeBtn.addEventListener('click', () => {
+        // 增加按钮点击震动反馈
+        vibrateDevice(40);
+        
+        // 切换 class 状态
+        document.body.classList.toggle('dark-mode');
+        const isActive = document.body.classList.contains('dark-mode');
+        
+        // 改变图标指示
+        if (darkModeIcon) {
+            darkModeIcon.textContent = isActive ? 'light_mode' : 'dark_mode';
+        }
+        
+        // 存储用户的偏好
+        localStorage.setItem('darkMode', isActive);
+    });
+}
+
+// 在页面加载后启动监听器和主题初始化
 document.addEventListener('DOMContentLoaded', function () {
     setupPendingTransfersListener();
+    initDarkMode();
 });
-
