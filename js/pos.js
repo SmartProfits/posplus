@@ -27,6 +27,17 @@ let currentAnnouncement = null; // 当前活跃的公告
 let announcementBanner = null; // 公告横幅元素
 let announcementScrollingText = null; // 公告滚动文本元素
 
+// 添加震动反馈辅助函数
+function vibrateDevice(pattern = 50) {
+    if ('vibrate' in navigator) {
+        try {
+            navigator.vibrate(pattern);
+        } catch (e) {
+            console.log('Vibration failed:', e);
+        }
+    }
+}
+
 // 获取当前日期的字符串，格式为YYYY-MM-DD
 function getCurrentDate() {
     const now = new Date();
@@ -1986,6 +1997,7 @@ function toggleFreeItem(index) {
 
 // 添加商品到购物车
 function addToCart(productId) {
+    vibrateDevice(50);
     const product = products[productId];
     if (!product) return;
 
@@ -2347,6 +2359,7 @@ function showEditWeightDialog(index) {
 
 // 结账
 function checkout() {
+    vibrateDevice(50);
     if (cart.length === 0) return;
 
     // 检查收银员姓名是否已设置
@@ -2482,6 +2495,7 @@ function checkout() {
 
 // 显示结账成功模态框
 function showSuccessModal(saleData, saleId) {
+    vibrateDevice([100, 50, 100]);
     // 确保显示的总金额是按照Nearest 0.05规则舍入的
     const totalAmount = saleData.total_amount;
 
@@ -2679,6 +2693,7 @@ function newSale() {
 
 // 清空购物车
 function clearCart() {
+    vibrateDevice(50);
     cart = [];
     // 重置折扣值，解决结账后折扣仍然存在的问题
     discountPercent = 0;
@@ -3861,6 +3876,7 @@ function recordCashierShift(newCashierName, newCashierShift) {
 
 // 从购物车移除商品
 function removeFromCart(index) {
+    vibrateDevice(50);
     if (index >= 0 && index < cart.length) {
         cart.splice(index, 1);
         renderCart();
@@ -3869,6 +3885,7 @@ function removeFromCart(index) {
 
 // 更新购物车中商品数量
 function updateQuantity(index, quantity) {
+    vibrateDevice(50);
     if (index >= 0 && index < cart.length) {
         if (quantity <= 0) {
             // 如果数量小于等于0，从购物车中移除
