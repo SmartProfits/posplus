@@ -5321,20 +5321,109 @@ function initDarkMode() {
 function initVirtualKeyboard() {
     const virtualKeyboard = document.getElementById('virtualKeyboard');
     const closeKeyboardBtn = document.getElementById('closeKeyboardBtn');
+    const kbShrinkBtn = document.getElementById('kbShrinkBtn');
+    const kbEnlargeBtn = document.getElementById('kbEnlargeBtn');
+    const kbDragHandle = document.querySelector('.kb-drag-handle');
     const searchInput = document.getElementById('productSearch');
     const searchIcon = searchInput ? searchInput.parentElement.querySelector('.material-icons') : null;
 
     if (!virtualKeyboard || !searchInput) return;
 
-    const showKeyboard = () => virtualKeyboard.classList.add('visible');
+    // Default keyboard states
+    let kbScale = 1;
+    let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+    let xOffset = 0;
+    let yOffset = 0;
+
+    // 显示键盘
+    const showKeyboard = () => {
+        virtualKeyboard.style.transition = 'bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s, opacity 0.2s';
+        virtualKeyboard.classList.add('visible');
+    };
 
     searchInput.addEventListener('click', showKeyboard);
     if(searchIcon) searchIcon.addEventListener('click', showKeyboard);
 
+    // 隐藏键盘
     closeKeyboardBtn.addEventListener('click', () => {
         virtualKeyboard.classList.remove('visible');
+        // 可选：隐藏时重置位置
+        // xOffset = 0; yOffset = 0; 
+        // setTranslate(0, 0, virtualKeyboard);
     });
 
+    // 大小调整
+    const updateScale = (delta) => {
+        kbScale = Math.max(0.6, Math.min(1.5, kbScale + delta));
+        virtualKeyboard.style.transform = `translateX(-50%) translate3d(${xOffset}px, ${yOffset}px, 0) scale(${kbScale})`;
+    };
+
+    if(kbShrinkBtn) kbShrinkBtn.addEventListener('click', () => updateScale(-0.1));
+    if(kbEnlargeBtn) kbEnlargeBtn.addEventListener('click', () => updateScale(0.1));
+
+    // 拖动逻辑
+    if(kbDragHandle) {
+        kbDragHandle.addEventListener('mousedown', dragStart);
+        kbDragHandle.addEventListener('touchstart', dragStart, { passive: true });
+        
+        document.addEventListener('mouseup', dragEnd);
+        document.addEventListener('touchend', dragEnd);
+        
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('touchmove', drag, { passive: false });
+    }
+
+    function dragStart(e) {
+        if (e.type === 'touchstart') {
+            initialX = e.touches[0].clientX - xOffset;
+            initialY = e.touches[0].clientY - yOffset;
+        } else {
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
+        }
+
+        if (e.target === kbDragHandle || kbDragHandle.contains(e.target)) {
+            isDragging = true;
+            // 拖拽时消除 transition 延迟以保证跟手
+            virtualKeyboard.style.transition = 'none';
+        }
+    }
+
+    function dragEnd(e) {
+        initialX = currentX;
+        initialY = currentY;
+        isDragging = false;
+        // 恢复动画
+        virtualKeyboard.style.transition = 'transform 0.2s, opacity 0.2s';
+    }
+
+    function drag(e) {
+        if (isDragging) {
+            e.preventDefault();
+
+            if (e.type === 'touchmove') {
+                currentX = e.touches[0].clientX - initialX;
+                currentY = e.touches[0].clientY - initialY;
+            } else {
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+            }
+
+            xOffset = currentX;
+            yOffset = currentY;
+            setTranslate(currentX, currentY, virtualKeyboard);
+        }
+    }
+
+    function setTranslate(xPos, yPos, el) {
+        el.style.transform = `translateX(-50%) translate3d(${xPos}px, ${yPos}px, 0) scale(${kbScale})`;
+    }
+
+    // 键盘按键逻辑
     const kbKeys = virtualKeyboard.querySelectorAll('.kb-key');
     kbKeys.forEach(key => {
         key.addEventListener('click', (e) => {
