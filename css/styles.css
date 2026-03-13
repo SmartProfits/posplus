@@ -490,7 +490,7 @@ button:hover {
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
 }
 
@@ -4196,6 +4196,7 @@ body.simple-mode .cart-container {
 }
 
 body.simple-mode .product-grid {
+    grid-template-columns: repeat(8, 1fr);
     max-height: calc(100vh - 140px);
     overflow-y: auto;
 }
@@ -6988,6 +6989,16 @@ body.dark-mode #inventoryTable td {
     color: #f1f5f9 !important;
     background: #1e293b !important;
     border-bottom-color: #334155 !important;
+}
+
+body.dark-mode .empty-cart {
+    background-color: #0f172a !important;
+    color: #94a3b8 !important;
+    border: 1px dashed #334155;
+}
+
+body.dark-mode .empty-cart::before {
+    color: #475569 !important;
 }
 
 /* Filter Groups (Inventory, Transfers, History) */
