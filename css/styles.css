@@ -4196,7 +4196,7 @@ body.simple-mode .cart-container {
 }
 
 body.simple-mode .product-grid {
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     max-height: calc(100vh - 140px);
     overflow-y: auto;
 }
@@ -7050,4 +7050,146 @@ body.dark-mode .icon-button:hover {
 body.dark-mode .action-button {
     background: linear-gradient(135deg, #3b82f6, #2563eb);
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* =========================================================
+   VIRTUAL KEYBOARD (LIGHT/DARK)
+   ========================================================= */
+.virtual-keyboard-overlay {
+    position: fixed;
+    bottom: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 20px 20px 0 0;
+    padding: 15px 20px 25px;
+    z-index: 9999;
+    transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.virtual-keyboard-overlay.visible {
+    bottom: 0;
+}
+
+.virtual-keyboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    font-weight: 600;
+}
+
+.close-kb-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.close-kb-btn:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.kb-key {
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    min-width: 45px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+    transition: all 0.1s;
+    user-select: none;
+}
+
+.kb-key:active {
+    transform: translateY(2px);
+    box-shadow: none;
+    background: #e5e7eb;
+}
+
+.kb-key.special-key {
+    background: #f3f4f6;
+    font-size: 14px;
+}
+
+.kb-key.bksp, .kb-key.clear-key {
+    min-width: 65px;
+    color: #ef4444;
+}
+
+.kb-key.space-bar {
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+/* Dark Mode Keyboard Overrides */
+body.dark-mode .virtual-keyboard-overlay {
+    background: rgba(15, 23, 42, 0.95);
+    border-color: #334155;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .virtual-keyboard-header {
+    color: #f1f5f9;
+    border-bottom-color: #334155;
+}
+
+body.dark-mode .close-kb-btn {
+    color: #94a3b8;
+}
+
+body.dark-mode .close-kb-btn:hover {
+    background: #1e293b;
+    color: #f8fafc;
+}
+
+body.dark-mode .kb-key {
+    background: #1e293b;
+    border-color: #334155;
+    color: #f8fafc;
+    box-shadow: 0 3px 0 #0f172a;
+}
+
+body.dark-mode .kb-key:active {
+    background: #334155;
+    box-shadow: none;
+}
+
+body.dark-mode .kb-key.special-key {
+    background: #0f172a;
+}
+
+body.dark-mode .kb-key.bksp, body.dark-mode .kb-key.clear-key {
+    color: #f87171;
 }

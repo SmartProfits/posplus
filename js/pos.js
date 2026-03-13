@@ -5317,7 +5317,46 @@ function initDarkMode() {
 }
 
 // 在页面加载后启动监听器和主题初始化
+// ???????
+function initVirtualKeyboard() {
+    const virtualKeyboard = document.getElementById('virtualKeyboard');
+    const closeKeyboardBtn = document.getElementById('closeKeyboardBtn');
+    const searchInput = document.getElementById('productSearch');
+    const searchIcon = searchInput ? searchInput.parentElement.querySelector('.material-icons') : null;
+
+    if (!virtualKeyboard || !searchInput) return;
+
+    const showKeyboard = () => virtualKeyboard.classList.add('visible');
+
+    searchInput.addEventListener('click', showKeyboard);
+    if(searchIcon) searchIcon.addEventListener('click', showKeyboard);
+
+    closeKeyboardBtn.addEventListener('click', () => {
+        virtualKeyboard.classList.remove('visible');
+    });
+
+    const kbKeys = virtualKeyboard.querySelectorAll('.kb-key');
+    kbKeys.forEach(key => {
+        key.addEventListener('click', (e) => {
+            vibrateDevice(30);
+            e.preventDefault();
+            searchInput.parentElement.classList.add('active');
+
+            if (key.id === 'kbBackspace') {
+                searchInput.value = searchInput.value.slice(0, -1);
+            } else if (key.id === 'kbClear') {
+                searchInput.value = '';
+            } else {
+                const char = key.dataset.key;
+                if (char) searchInput.value += char;
+            }
+            searchInput.dispatchEvent(new Event('input'));
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     setupPendingTransfersListener();
     initDarkMode();
+    initVirtualKeyboard();
 });
