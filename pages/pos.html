@@ -1045,9 +1045,14 @@
 
     <!-- 屏幕迷你软键盘 (Custom Virtual Keyboard) -->
     <div id="virtualKeyboard" class="virtual-keyboard-overlay hidden">
-        <div class="virtual-keyboard-header">
-            <span>Product Search</span>
-            <button id="closeKeyboardBtn" class="close-kb-btn"><i class="material-icons">keyboard_hide</i></button>
+        <div class="virtual-keyboard-header" id="virtualKeyboardHeader">
+            <div class="kb-drag-handle" title="Drag to move"><i class="material-icons">drag_indicator</i></div>
+            <span class="kb-title">Product Search</span>
+            <div class="kb-controls">
+                <button id="kbShrinkBtn" class="kb-size-btn" title="Shrink"><i class="material-icons">remove</i></button>
+                <button id="kbEnlargeBtn" class="kb-size-btn" title="Enlarge"><i class="material-icons">add</i></button>
+                <button id="closeKeyboardBtn" class="close-kb-btn"><i class="material-icons">keyboard_hide</i></button>
+            </div>
         </div>
         <div class="keyboard-row">
             <button class="kb-key" data-key="Q">Q</button>
