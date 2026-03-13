@@ -6817,3 +6817,226 @@ body.dark-mode.simple-mode .cart-container {
     background-color: #1e293b;
     box-shadow: -2px 0 10px rgba(0,0,0,0.5);
 }
+
+/* Fix Cart Subtotal, Summaries, and Typography in Dark Mode */
+body.dark-mode .cart-summary {
+    background-color: #1e293b;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+body.dark-mode .cart-discount {
+    background-color: #1e293b;
+    border-color: #334155;
+    color: #e2e8f0;
+}
+
+body.dark-mode .summary-row {
+    border-bottom-color: #475569;
+}
+
+body.dark-mode .summary-row.total {
+    border-top-color: #64748b;
+    color: #ffffff;
+}
+
+body.dark-mode .summary-row.discount {
+    color: #f87171;
+}
+
+body.dark-mode .cart-total {
+    color: #ffffff;
+    border-top-color: #475569;
+}
+
+body.dark-mode .cart-header-item {
+    color: #94a3b8;
+}
+
+body.dark-mode .cart-container h2[style] {
+    color: #f8fafc !important;
+}
+
+body.dark-mode .toggle-discount-btn {
+    background-color: #334155 !important;
+}
+
+body.dark-mode .toggle-discount-btn i {
+    color: #60a5fa !important;
+}
+
+body.dark-mode .discount-control input {
+    background-color: #0f172a;
+    border-color: #475569;
+    color: #f8fafc;
+}
+
+body.dark-mode .cart-item-total {
+    color: #f8fafc;
+}
+
+/* =========================================================
+   DARK MODE FOR VIEWS (Sales History, Inventory, etc.)
+   ========================================================= */
+
+/* View Page Headers */
+body.dark-mode .view-page-header {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border-color: #334155;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .view-header-title {
+    color: #f8fafc;
+}
+
+body.dark-mode .view-header-subtitle {
+    color: #94a3b8;
+}
+
+/* Summary Cards */
+body.dark-mode .summary-card {
+    background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+    border-color: #334155;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .summary-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transform: translateY(-4px);
+}
+
+body.dark-mode .summary-card h3 {
+    color: #94a3b8;
+}
+
+body.dark-mode .summary-value {
+    color: #f8fafc;
+}
+
+body.dark-mode .summary-subtitle {
+    color: #64748b;
+}
+
+/* Base Tables */
+body.dark-mode table {
+    border-color: #334155;
+}
+
+body.dark-mode table th,
+body.dark-mode #stockHistoryTable th,
+body.dark-mode #salesTable th,
+body.dark-mode #inventoryTable th {
+    background: #0f172a !important;
+    color: #94a3b8 !important;
+    border-bottom-color: #334155 !important;
+}
+
+body.dark-mode table td {
+    border-bottom-color: #334155 !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode table tr:hover,
+body.dark-mode table tr:hover td {
+    background: #334155 !important;
+}
+
+/* Premium Tables Container specifically */
+body.dark-mode .premium-table-container,
+body.dark-mode .sale-details-container {
+    background: #1e293b !important;
+    border-color: #334155;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .premium-table thead,
+body.dark-mode .sale-details-container thead,
+body.dark-mode #salesTable thead tr {
+    background: #0f172a !important;
+}
+
+body.dark-mode .premium-table th,
+body.dark-mode .sale-details-container th {
+    color: #cbd5e1;
+    border-bottom-color: #334155;
+}
+
+body.dark-mode table tr,
+body.dark-mode table tbody tr,
+body.dark-mode table tbody tr:nth-child(even),
+body.dark-mode table tbody tr:nth-child(odd) {
+    background-color: transparent !important;
+}
+
+body.dark-mode .premium-table tr:hover,
+body.dark-mode .premium-table tr:hover td,
+body.dark-mode .sale-details-container tr:hover,
+body.dark-mode .sale-details-container tr:hover td,
+body.dark-mode table tr:hover,
+body.dark-mode table tr:hover td,
+body.dark-mode #salesTable tbody tr:hover td {
+    background: #334155 !important;
+}
+
+body.dark-mode table td,
+body.dark-mode .premium-table td,
+body.dark-mode .sale-details-container td,
+body.dark-mode #stockHistoryTable td,
+body.dark-mode #salesTable td,
+body.dark-mode #inventoryTable td {
+    color: #f1f5f9 !important;
+    background: #1e293b !important;
+    border-bottom-color: #334155 !important;
+}
+
+/* Filter Groups (Inventory, Transfers, History) */
+body.dark-mode .inventory-filters,
+body.dark-mode .date-filter-group {
+    background: #1e293b;
+    border-color: #334155;
+    color: #cbd5e1;
+}
+
+body.dark-mode .filter-item label {
+    color: #94a3b8;
+}
+
+body.dark-mode .inventory-search,
+body.dark-mode .date-filter-group input[type="date"] {
+    background-color: #0f172a;
+    color: #f8fafc;
+    border-color: #475569;
+}
+
+body.dark-mode .inventory-search:focus,
+body.dark-mode .date-filter-group input[type="date"]:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* History and Common Titles overrides */
+body.dark-mode h2[style*="color:#1e293b"],
+body.dark-mode h2[style*="color: #1e293b"] {
+    color: #f8fafc !important;
+}
+
+/* Loading spinners/texts */
+body.dark-mode .loading {
+    color: #94a3b8;
+}
+
+/* Specific button styles mapped */
+body.dark-mode .icon-button {
+    color: #60a5fa;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+body.dark-mode .icon-button:hover {
+    background: rgba(59, 130, 246, 0.2);
+}
+
+body.dark-mode .action-button {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
